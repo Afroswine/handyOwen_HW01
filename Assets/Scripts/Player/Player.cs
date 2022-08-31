@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
             _currentHealth = value;
         }
     }
+    int _treasureCount = 0;;
 
     TankController _tankController;
 
@@ -51,6 +52,12 @@ public class Player : MonoBehaviour
         {
             Kill();
         }
+    }
+
+    public void IncreaseTreasure(int amount)
+    {
+        _treasureCount += amount;
+        Debug.Log("Treasure Collected: " + _treasureCount);
     }
 
     public void Kill()
