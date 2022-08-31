@@ -5,8 +5,24 @@ using UnityEngine;
 [RequireComponent(typeof(TankController))]
 public class Player : MonoBehaviour
 {
+    // backing field
     [SerializeField] int _maxHealth = 3;
+    // property. Can be retrieved, but not set
+    public int MaxHealth
+    {
+        get { return _maxHealth; }
+    }
     int _currentHealth;
+    public int CurrentHealth
+    {
+        get { return _currentHealth; }
+        private set
+        {
+            if (value > _maxHealth)
+                value = _maxHealth;
+            _currentHealth = value;
+        }
+    }
 
     TankController _tankController;
 
