@@ -92,6 +92,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
+  _bodyMaterial: {fileID: 0}
+  _art: {fileID: 0}
+  m_HealthUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  m_TreasureUpdate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6508148207619719922
 GameObject:
   m_ObjectHideFlags: 0

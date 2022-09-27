@@ -9,5 +9,6 @@ public class HealthIncrease : CollectibleBase
     protected override void Collect(Player player)
     {
         player.IncreaseHealth(_healthAdded);
+        Destroy(gameObject);
     }
 }

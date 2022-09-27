@@ -7,9 +7,9 @@ public abstract class CollectibleBase : MonoBehaviour
 {
     protected abstract void Collect(Player player);
 
-    [SerializeField] float _movementSpeed = 1;
-    protected float MovementSpeed => _movementSpeed;
-
+    [Header("CollectibleBase")]
+    [SerializeField] float _rotationSpeed = 1;
+    protected float RotationSpeed => _rotationSpeed;
     [SerializeField] ParticleSystem _collectParticles;
     [SerializeField] AudioClip _collectSound;
 
@@ -27,7 +27,7 @@ public abstract class CollectibleBase : MonoBehaviour
     protected virtual void Movement(Rigidbody rb)
     {
         //calculate rotation
-        Quaternion turnOffset = Quaternion.Euler(0, _movementSpeed, 0);
+        Quaternion turnOffset = Quaternion.Euler(0, _rotationSpeed, 0);
         rb.MoveRotation(_rb.rotation * turnOffset);
     }
 

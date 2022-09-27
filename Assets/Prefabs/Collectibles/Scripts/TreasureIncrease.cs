@@ -9,12 +9,13 @@ public class TreasureIncrease : CollectibleBase
     protected override void Collect(Player player)
     {
         player.IncreaseTreasure(_treasureAmount);
+        Destroy(gameObject);
     }
 
     protected override void Movement(Rigidbody rb)
     {
         Quaternion turnOffset = Quaternion.Euler
-            (MovementSpeed, MovementSpeed, MovementSpeed);
+            (RotationSpeed, RotationSpeed, RotationSpeed);
         rb.MoveRotation(rb.rotation * turnOffset);
     }
 }

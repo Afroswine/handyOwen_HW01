@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(TankController))]
 public class Player : MonoBehaviour
 {
     // backing field
+    [Header("Player")]
     [SerializeField] int _maxHealth = 3;
-    // property. Can be retrieved, but not set
+    [SerializeField] Material _bodyMaterial;
+    public Material BodyMaterial => _bodyMaterial;
+    [SerializeField] List<GameObject> _recolorableParts;
+
     public int MaxHealth
     {
         get { return _maxHealth; }
@@ -23,8 +28,16 @@ public class Player : MonoBehaviour
             _currentHealth = value;
         }
     }
-    int _treasureCount = 0;;
+    int _treasureCount = 0;
+    public int TreasureCount => _treasureCount;
+    
+    //States
+    public bool IsInvincible = false;
 
+    [HideInInspector] public UnityEvent m_HealthUpdate = new UnityEvent();
+    [HideInInspector] public UnityEvent m_PlayerDeath = new UnityEvent();
+    [HideInInspector] public UnityEvent m_TreasureUpdate = new UnityEvent();
+    
     TankController _tankController;
 
     private void Awake()
@@ -35,33 +48,48 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
+        m_HealthUpdate.Invoke();
     }
 
     public void IncreaseHealth(int amount)
     {
         _currentHealth += amount;
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
-        Debug.Log("Player's Health: " + _currentHealth);
+        m_HealthUpdate.Invoke();
     }
 
     public void DecreaseHealth(int amount)
     {
-        _currentHealth -= amount;
-        Debug.Log("Player's health: " + _currentHealth);
-        if(_currentHealth <= 0)
+        if (!IsInvincible)
         {
-            Kill();
+            _currentHealth -= amount;
+            m_HealthUpdate.Invoke();
+            if (_currentHealth <= 0)
+            {
+                Kill();
+            }
         }
     }
 
     public void IncreaseTreasure(int amount)
     {
         _treasureCount += amount;
-        Debug.Log("Treasure Collected: " + _treasureCount);
+        m_TreasureUpdate.Invoke();
+    }
+
+    public void Recolor(Material material)
+    {
+        foreach (GameObject go in _recolorableParts)
+        {
+            go.GetComponent<MeshRenderer>().material = material;
+        }
     }
 
     public void Kill()
     {
+        _currentHealth = 0;
+        m_HealthUpdate.Invoke();
+        m_PlayerDeath.Invoke();
         gameObject.SetActive(false);
         // play particles
         // play sounds

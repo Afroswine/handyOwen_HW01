@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpeedIncrease : CollectibleBase
 {
-    [SerializeField] float _speedAmount = 5;
+    [SerializeField] float _speedMultiplier = 2f;
+    [SerializeField] float _duration = 3f;
 
     protected override void Collect(Player player)
     {
@@ -12,14 +13,15 @@ public class SpeedIncrease : CollectibleBase
         TankController controller = player.GetComponent<TankController>();
         if(controller != null)
         {
-            controller.MaxSpeed += _speedAmount;
+            controller.MultiplySpeed(_speedMultiplier, _duration);
+            Destroy(gameObject);
         }
     }
 
     protected override void Movement(Rigidbody rb)
     {
         Quaternion turnOffset = Quaternion.Euler
-            (MovementSpeed, MovementSpeed, MovementSpeed);
+            (RotationSpeed, RotationSpeed, RotationSpeed);
         rb.MoveRotation(rb.rotation * turnOffset);
     }
 }
