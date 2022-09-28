@@ -11,6 +11,8 @@ public class Slower : Enemy
 
     protected override void PlayerImpact(Player player)
     {
+        base.PlayerImpact(player);
+
         TankController controller = player.GetComponent<TankController>();
         if(controller != null)
         {

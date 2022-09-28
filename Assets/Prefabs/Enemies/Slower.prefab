@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7362318797135541363}
   - component: {fileID: 7362318797135541360}
   - component: {fileID: 7362318797135541364}
-  - component: {fileID: 7362318797135541367}
   - component: {fileID: -8404982102420261753}
   m_Layer: 0
   m_Name: Slower
@@ -116,21 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7362318797135541367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7362318797135541361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e8138691d1360b4cb04a3e4385cc482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damageAmount: 0
-  _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 0}
 --- !u!114 &-8404982102420261753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageAmount: 1
   _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 0}
+  _impactSound: {fileID: 8300000, guid: eb79bc481a48f564ab4853404c6aad11, type: 3}
   _speedMultiplier: 0.5
   _duration: 3

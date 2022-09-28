@@ -8,6 +8,8 @@ public abstract class CollectibleBase : MonoBehaviour
     protected abstract void Collect(Player player);
 
     [Header("CollectibleBase")]
+    [Tooltip("Requires a Rigidbody and MeshRenderer.")]
+    [SerializeField] GameObject _art;
     [SerializeField] float _rotationSpeed = 1;
     protected float RotationSpeed => _rotationSpeed;
     [SerializeField] ParticleSystem _collectParticles;
@@ -17,7 +19,7 @@ public abstract class CollectibleBase : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = _art.GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
     {
@@ -50,6 +52,7 @@ public abstract class CollectibleBase : MonoBehaviour
         {
             _collectParticles = Instantiate(_collectParticles,
                 transform.position, Quaternion.identity);
+            _collectParticles.Play();
         }
         //audio TODO - consider Object Pooling
         if(_collectSound != null)

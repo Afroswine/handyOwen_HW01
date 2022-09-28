@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpeedIncrease : CollectibleBase
 {
+    [Header("SpeedIncrease")]
     [SerializeField] float _speedMultiplier = 2f;
     [SerializeField] float _duration = 3f;
 

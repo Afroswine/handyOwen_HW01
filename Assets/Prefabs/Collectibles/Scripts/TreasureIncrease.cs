@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TreasureIncrease : CollectibleBase
 {
+    [Header("TreasureIncrease")]
     [SerializeField] int _treasureAmount = 1;
 
     protected override void Collect(Player player)

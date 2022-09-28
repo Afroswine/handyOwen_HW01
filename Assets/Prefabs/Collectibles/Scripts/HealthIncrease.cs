@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthIncrease : CollectibleBase
 {
+    [Header("HealthIncrease")]
     [SerializeField] int _healthAdded = 1;
     
     protected override void Collect(Player player)
